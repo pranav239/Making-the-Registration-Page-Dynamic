@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    const posts = [
+      {
+        title: "post One",
+        body: "my passport size photo",
+        createdAt: new Date().toLocaleString(),
+      },
+      {
+        title: "post One",
+        body: "unexpected click",
+        createdAt: new Date().toLocaleString(),
+      },
+    ];
+
+    function print() {
+      posts.forEach((post) => {
+        console.log(
+          `${post.title} | ${post.body}  | created at ${post.createdAt}`
+        );
+      });
+    }
+
+    function createPost(obj) {
+      return new Promise((resolve, reject) => {
+        (obj.createdAt = new Date().toLocaleString()), posts.push(obj);
+        resolve(obj);
+      });
+    }
+
+    function lastactivity() {
+      console.log(new Date().toLocaleString());
+    }
+
+    Promise.all([
+      createPost({ title: "post Three", body: "manali vacation" }),
+      createPost({ title: "post four", body: "with my homies" }),
+    ]).then(() => {
+      print();
+      lastactivity();
+    });
+  </script>
+</html>
